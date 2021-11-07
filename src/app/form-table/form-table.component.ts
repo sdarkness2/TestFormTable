@@ -43,8 +43,10 @@ export class FormTableComponent implements OnInit {
 
   mudarOperacao() {
     if(this.newAsset == true)
-    {this.newAsset = false}
-    else {this.newAsset=true}
+    {this.newAsset = false
+    this.limparCampos()}
+    else {this.newAsset=true
+    this.limparCampos()}
   }
 
   addData() {
@@ -77,6 +79,15 @@ export class FormTableComponent implements OnInit {
     {
       this.validarCampos()
     }
+  }
+
+  limparCampos()
+  {
+    this.nome.reset();
+    this.idade.reset();
+    this.teste1.reset();
+    this.teste2.reset();
+    this.teste3.reset();
   }
 
   validarCampos()
