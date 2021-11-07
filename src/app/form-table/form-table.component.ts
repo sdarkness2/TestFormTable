@@ -41,13 +41,6 @@ export class FormTableComponent implements OnInit {
     return ((input.value%100==0) ? null : {validar: true})
   }
 
-  getErrorMessage() {
-    if (this.idade.hasError('required')) {
-      return 'Precisa digitar um valor';
-    }
-    return null
-  }
-
   mudarOperacao() {
     if(this.newAsset == true)
     {this.newAsset = false}
@@ -55,20 +48,20 @@ export class FormTableComponent implements OnInit {
   }
 
   addData() {
-    if (this.newAsset == false)
+    if (!this.nome.invalid && !this.idade.invalid && this.idade.value%100 == 0)
     {
-      if (!this.nome.invalid && !this.idade.invalid && this.idade.value%100 == 0)
+      if (this.newAsset == false)
       {
         const newValue = {nome: this.nome.value, idade: this.idade.value, teste1: null, teste2: null, teste3: null};
         this.dataToDisplay.push(newValue);
         this.dataSource.setData(this.dataToDisplay);
         this.nome.reset();
         this.idade.reset();
+        this.teste1.reset();
+        this.teste2.reset();
+        this.teste3.reset();
       }
-    }
-    else if (this.newAsset == true)
-    {
-      if (!this.nome.invalid && !this.idade.invalid && this.idade.value%100 == 0)
+      else if (this.newAsset == true)
       {
         const newValue = {nome: this.nome.value, idade: this.idade.value, teste1: this.teste1.value, teste2: this.teste2.value, teste3: this.teste3.value};
         this.dataToDisplay.push(newValue);
@@ -80,7 +73,26 @@ export class FormTableComponent implements OnInit {
         this.teste3.reset();
       }
     }
+    else
+    {
+      this.validarCampos()
+    }
   }
+
+  validarCampos()
+  {
+    if(this.nome.invalid)
+    {this.nome.markAllAsTouched();}
+    if(this.idade.invalid)
+    {this.idade.markAllAsTouched();}
+    if(this.teste1.invalid)
+    {this.teste1.markAsTouched()};
+    if(this.teste2.invalid)
+    {this.teste2.markAsTouched()};
+    if(this.teste3.invalid)
+    {this.teste3.markAsTouched()};
+  }
+
 }
 
 /* OUTRA CLASSE */
