@@ -57,22 +57,17 @@ export class FormTableComponent implements OnInit {
         const newValue = {nome: this.nome.value, idade: this.idade.value, teste1: null, teste2: null, teste3: null};
         this.dataToDisplay.push(newValue);
         this.dataSource.setData(this.dataToDisplay);
-        this.nome.reset();
-        this.idade.reset();
-        this.teste1.reset();
-        this.teste2.reset();
-        this.teste3.reset();
+        this.limparCampos();
       }
       else if (this.newAsset == true)
       {
-        const newValue = {nome: this.nome.value, idade: this.idade.value, teste1: this.teste1.value, teste2: this.teste2.value, teste3: this.teste3.value};
-        this.dataToDisplay.push(newValue);
-        this.dataSource.setData(this.dataToDisplay);
-        this.nome.reset();
-        this.idade.reset();
-        this.teste1.reset();
-        this.teste2.reset();
-        this.teste3.reset();
+        if(!this.teste1.invalid && !this.teste2.invalid && !this.teste3.invalid)
+        {
+          const newValue = {nome: this.nome.value, idade: this.idade.value, teste1: this.teste1.value, teste2: this.teste2.value, teste3: this.teste3.value};
+          this.dataToDisplay.push(newValue);
+          this.dataSource.setData(this.dataToDisplay);
+          this.limparCampos();
+        }
       }
     }
     else
