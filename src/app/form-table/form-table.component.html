@@ -1,0 +1,100 @@
+<div class="test-div">
+    <mat-card class="mat-card-teste">
+        <mat-card-title>Testes</mat-card-title>
+        <div class="row">
+            <div class="forms">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{newAsset ? 'Nova Ação' : 'Ação'}}</mat-label>
+                    <input matInput type="text" 
+                    [formControl]="nome"
+                    placeholder="Digite seu nome">
+                    <mat-error *ngIf="nome.invalid">Nome inválido ou campo vazio.</mat-error>
+                    <mat-hint>Nome com no minimo 4 caracteres.</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div class="forms">
+                <mat-form-field appearance="outline">
+                    <mat-label>Idade</mat-label>
+                    <input matInput type="number"
+                    [formControl]="idade"
+                    placeholder="Digite sua idade">
+                    <mat-error *ngIf="idade.invalid">Campo vazio ou idade invalida</mat-error>
+                    <mat-hint>Só aceita numeros multiplos de 100 positivo.</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="newAsset" class="forms">
+                <mat-form-field appearance="outline">
+                    <mat-label>Teste 1</mat-label>
+                    <input matInput type="text"
+                    [formControl]="teste1"
+                    placeholder="Digite o teste 1">
+                    <mat-error *ngIf="teste1.invalid">KAKAKAKAKAKAKA</mat-error>
+                    <mat-hint>123 xd</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="newAsset" class="forms">
+                <mat-form-field appearance="outline">
+                    <mat-label>Teste 2</mat-label>
+                    <input matInput type="text"
+                    [formControl]="teste2"
+                    placeholder="Digite o teste 1">
+                    <mat-error *ngIf="teste2.invalid">KAKAKAKAKAKAKA</mat-error>
+                    <mat-hint>123 xd</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="newAsset" class="forms">
+                <mat-form-field appearance="outline">
+                    <mat-label>Teste 3</mat-label>
+                    <input matInput type="text"
+                    [formControl]="teste3"
+                    placeholder="Digite o teste 1">
+                    <mat-error *ngIf="teste3.invalid">KAKAKAKAKAKAKA</mat-error>
+                    <mat-hint>123 xd</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div class="forms columns">
+                <button mat-raised-button (click)="addData()">Cadastrar</button>
+                <button mat-raised-button *ngIf="!newAsset" (click)="mudarOperacao()">Novo Formulario</button>
+                <button mat-raised-button *ngIf="newAsset" (click)="mudarOperacao()">Formulario antigo</button>
+            </div>
+        </div>
+        <div class="table">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+                <!-- Position Column -->
+                <ng-container matColumnDef="Nome">
+                  <th mat-header-cell *matHeaderCellDef>Nome</th>
+                  <td mat-cell *matCellDef="let element">{{element.nome}}</td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="Idade">
+                  <th mat-header-cell *matHeaderCellDef>Idade</th>
+                  <td mat-cell *matCellDef="let element">{{element.idade}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Teste1">
+                    <th mat-header-cell *matHeaderCellDef>Teste 1</th>
+                    <td mat-cell *matCellDef="let element">{{element.teste1}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Teste2">
+                    <th mat-header-cell *matHeaderCellDef>Teste 2</th>
+                    <td mat-cell *matCellDef="let element">{{element.teste2}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Teste3">
+                    <th mat-header-cell *matHeaderCellDef>Teste 3</th>
+                    <td mat-cell *matCellDef="let element">{{element.teste3}}</td>
+                  </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </div>
+    </mat-card> 
+</div>
